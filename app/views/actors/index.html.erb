@@ -2,7 +2,7 @@
 
 <h1>Actors</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Firstname</th>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= actor.firstname %></td>
         <td><%= actor.lastname %></td>
-        <td><%= actor.movie.title %></td>
+        <td><%= actor.movies[0].title %></td>
         <td><%= link_to 'Show', actor %></td>
         <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
         <td><%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

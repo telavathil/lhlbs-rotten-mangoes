@@ -11,9 +11,9 @@
 </p>
 
 <p>
-  <strong>Movie:</strong>
-  <%= @actor.movie.title %>
+  <strong>Movies:</strong>
+  <%= @actor.movies.each {|m| m.title} %>
 </p>
 
-<%= link_to 'Edit', edit_actor_path(@actor) %> |
+<!-- <%= link_to 'Edit', actor_path(@actor) %> | -->
 <%= link_to 'Back', actors_path %>

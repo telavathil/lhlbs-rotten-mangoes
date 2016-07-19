@@ -1,5 +1,6 @@
 class Actor < ApplicationRecord
-    belongs_to :movie
+    has_many :staredins
+    has_many :movies, through: :staredins
 
     validates :firstname,
               presence: true

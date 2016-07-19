@@ -1,11 +1,11 @@
 class ActorsController < ApplicationController
   before_action :set_actor, only: [:show, :edit, :update, :destroy]
-  before_action :load_movie, only: [:new, :create, :edit, :destroy]
+  # before_action :load_movie, only: [:new, :create, :edit, :destroy]
 
   # GET /actors
   # GET /actors.json
   def index
-    @actors = @movie.actors
+    @actors = Actor.all
   end
 
   # GET /actors/1
@@ -15,8 +15,8 @@ class ActorsController < ApplicationController
 
   # GET /actors/new
   def new
-    @actor = @movie.actors.new
-
+    @actor = Actor.new
+    @staredin = Staredin.new
   end
 
   # GET /actors/1/edit
@@ -26,11 +26,16 @@ class ActorsController < ApplicationController
   # POST /actors
   # POST /actors.json
   def create
-    # binding.pry
-    @actor = @movie.actors.new(actor_params)
+    fields = actor_params
+    @actor = Actor.new(fields[0])
 
     respond_to do |format|
       if @actor.save
+        #update Staredin
+        fields[1][:actor_id] = @actor.id
+        @staredin = Staredin.new(fields[1])
+        @staredin.save
+
         format.html { redirect_to @actor, notice: 'Actor was successfully created.' }
         format.json { render :show, status: :created, location: @actor }
       else
@@ -43,8 +48,9 @@ class ActorsController < ApplicationController
   # PATCH/PUT /actors/1
   # PATCH/PUT /actors/1.json
   def update
+    fields = actor_params
     respond_to do |format|
-      if @actor.update(actor_params)
+      if @actor.update(fields[0])
         format.html { redirect_to @actor, notice: 'Actor was successfully updated.' }
         format.json { render :show, status: :ok, location: @actor }
       else
@@ -77,7 +83,7 @@ class ActorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def actor_params
-      params.require(:actor).permit(:firstname, :lastname, :movie_id)
+      [params.require(:actor).permit(:firstname,:lastname),params.require(:staredin).permit(:movie_id,:date)]
     end
 
     def set_movie

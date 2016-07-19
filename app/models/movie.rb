@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
     has_many :reviews
-    has_many :actors
+    has_many :staredins
+    has_many :actors, through: :staredins
 
     validates :title, presence: true
     validates :director, presence: true
@@ -11,7 +12,7 @@ class Movie < ApplicationRecord
     validate :release_date_is_in_the_past
 
     def review_average
-      reviews.sum(:rating_out_of_ten)/reviews.size
+      reviews.sum(:rating_out_of_ten)/reviews.size unless reviews.size.zero?
     end
 
     protected

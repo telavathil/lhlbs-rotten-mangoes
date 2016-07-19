@@ -36,7 +36,7 @@
     <%=actor.full_name %>
   </p>
 <%end%>
-<p><%= link_to "Add an Actor", new_movie_actor_path(@movie) %></p>
+<p><%= link_to "Add an Actor", new_actor_path(@movie) %></p>
 <h3>Reviews of
     <em><%= @movie.title %></em>: <%= @movie.review_average %>/10
 </h3>

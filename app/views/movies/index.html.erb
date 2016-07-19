@@ -2,7 +2,7 @@
 
 <h1>Movies</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -16,14 +16,14 @@
   </thead>
 
   <tbody>
-    <% @movies.each do |movie| %>
+    <% @movies.order(:release_date).each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
         <td><%= movie.director %></td>
         <td><%= movie.runtime_in_minutes %></td>
         <td><%= movie.description %></td>
-        <td><%= image_tag(movie.poster_image_url) %></td>
-        <td><%= movie.release_date %></td>
+        <td><%= image_tag(movie.poster_image_url,size: "54x82") %></td>
+        <td><%= formatted_date(movie.release_date) %></td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
