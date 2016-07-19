@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
 
     def index
       if current_user.admin?
-        @users = User.all
+        @users = User.page(params[:page])
       else
         redirect_to movies_url
       end
