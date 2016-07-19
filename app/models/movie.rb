@@ -2,6 +2,7 @@ class Movie < ApplicationRecord
     has_many :reviews
     has_many :staredins
     has_many :actors, through: :staredins
+    mount_uploader :image, ImageUploader
 
     validates :title, presence: true
     validates :director, presence: true

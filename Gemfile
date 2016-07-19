@@ -27,6 +27,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+#image uploads via carrerwave
+gem 'carrierwave'
+
+
 #bootstrap 4
 gem 'bootstrap', '~> 4.0.0.alpha3'
 
