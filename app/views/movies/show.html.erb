@@ -30,6 +30,13 @@
     <%= formatted_date(@movie.release_date) %>
 </p>
 
+<h3>Actors staring in: <em><%= @movie.title %></em></h3>
+<%@movie.actors.each do |actor| %>
+  <p>
+    <%=actor.full_name %>
+  </p>
+<%end%>
+<p><%= link_to "Add an Actor", new_movie_actor_path(@movie) %></p>
 <h3>Reviews of
     <em><%= @movie.title %></em>: <%= @movie.review_average %>/10
 </h3>
@@ -38,7 +45,7 @@
     <p><%= review.text %></p>
     <p><%= review.rating_out_of_ten %>/10</p>
     <small>- <%= review.user.full_name %></small><br/>
-<% end %>
+  <% end %>
     <p><%= link_to "Write a review!", new_movie_review_path(@movie) %></p>
 <% else %>
     <p>Please

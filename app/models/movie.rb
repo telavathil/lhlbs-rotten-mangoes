@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
     has_many :reviews
+    has_many :actors
 
     validates :title, presence: true
     validates :director, presence: true
@@ -20,5 +21,5 @@ class Movie < ApplicationRecord
             errors.add(:release_date, 'should be in the past') if release_date > Date.today
         end
     end
-    
+
 end
